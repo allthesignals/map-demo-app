@@ -1,5 +1,11 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+{{log model}}
+
+{{#mapbox-gl class='map-container' initOptions=(hash pitch=30) as |map|}}
+  {{#map.source options=(hash type='geojson' data=model) as |source|}}
+    {{source.layer layer=(hash
+      type='line'
+      paint=(hash line-color='#007cbf' line-width=10))}}
+  {{/map.source}}
+{{/mapbox-gl}}
 
 {{outlet}}
